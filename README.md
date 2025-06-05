@@ -45,11 +45,11 @@ ByteCore uses a flexible memory architecture:
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the CLI
-python cli/bytecore.py --task "analyze repository"
+# Run the CLI with a task flag
+python cli/bytecore.py --task github_agent:list_issues --params '{"repo": "owner/repo"}'
 
-# Execute specific skills
-python cli/bytecore.py --github-close-issues --repo "owner/repo"
+# Execute the provided GitHub helper command
+python cli/bytecore.py github-close-issues --repo "owner/repo"
 ```
 
 ## Project Structure

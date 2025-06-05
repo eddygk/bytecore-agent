@@ -397,6 +397,16 @@ def main(
         "yaml", "--memory", "-m", help="Memory backend: yaml, json"
     ),
     debug: bool = typer.Option(False, "--debug", "-d", help="Enable debug logging"),
+    task: Optional[str] = typer.Option(
+        None,
+        "--task",
+        help="Execute a task in the format skill:action",
+    ),
+    params: Optional[str] = typer.Option(
+        None,
+        "--params",
+        help="JSON string of parameters for --task",
+    ),
 ):
     """ByteCore Agent CLI - Your intelligent automation assistant."""
     if version:
@@ -409,6 +419,23 @@ def main(
     # Initialize agent with specified backend
     global agent
     agent = ByteCoreAgent(memory_backend=memory)
+
+    if task:
+        if ":" not in task:
+            console.print("[red]Task must be in format skill:action[/red]")
+            raise typer.Exit(1)
+
+        skill, action = task.split(":", 1)
+        task_params = {}
+        if params:
+            try:
+                task_params = json.loads(params)
+            except json.JSONDecodeError:
+                console.print("[red]Invalid JSON for --params[/red]")
+                raise typer.Exit(1)
+
+        asyncio.run(_execute_skill_task(agent, skill, action, task_params, None))
+        raise typer.Exit()
 
 
 if __name__ == "__main__":

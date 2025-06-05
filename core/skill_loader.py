@@ -104,7 +104,7 @@ class SkillLoader:
     managing their lifecycle and providing access to the agent.
     """
 
-    def __init__(self, skills_path: str = "./skills"):
+    def __init__(self, skills_path: str = "./skills", hot_reload: bool = False):
         """
         Initialize the skill loader.
 
@@ -112,6 +112,7 @@ class SkillLoader:
             skills_path: Directory containing skill modules
         """
         self.skills_path = Path(skills_path)
+        self.hot_reload = hot_reload
         self.loaded_skills: Dict[str, Type[BaseSkill]] = {}
         self.skill_instances: Dict[str, BaseSkill] = {}
         self.logger = logging.getLogger(__name__)
@@ -151,6 +152,12 @@ class SkillLoader:
                         and issubclass(obj, BaseSkill)
                         and obj != BaseSkill
                     ):
+                        if not inspect.iscoroutinefunction(obj.execute):
+                            self.logger.warning(
+                                f"Skill {obj.__name__} execute() is not async-compatible"
+                            )
+                            continue
+
                         skill_instance = obj(None)  # Temporary instance for metadata
                         skill_name = skill_instance.name
 
@@ -203,6 +210,10 @@ class SkillLoader:
         Returns:
             True if successful, False otherwise
         """
+        if not self.hot_reload:
+            self.logger.warning("Hot reload attempted while disabled")
+            return False
+
         try:
             # Find the module containing the skill
             for module_name, skill_class in list(self.loaded_skills.items()):
