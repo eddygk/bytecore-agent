@@ -1,0 +1,55 @@
+name: Python Code Quality
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    name: Check code formatting with Black
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install Black
+      run: |
+        python -m pip install --upgrade pip
+        pip install black
+    
+    - name: Check formatting with Black
+      run: |
+        black --check --diff .
+    
+    - name: Formatting instructions
+      if: failure()
+      run: |
+        echo "::error::Code formatting issues detected!"
+        echo "To fix formatting issues, run: black ."
+        echo "Then commit and push the changes."
+
+  syntax:
+    runs-on: ubuntu-latest
+    name: Validate Python syntax
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Compile Python files
+      run: |
+        python -m py_compile $(find . -name "*.py" -type f)
+    
+    - name: Syntax check status
+      run: echo "✅ All Python files compile successfully"
