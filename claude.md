@@ -28,11 +28,14 @@ Use this file to store:
 * ✅ Create `master` branch to resolve Codex Git ref error
 * ✅ Confirm Codex task execution post-fix (PR #1 merged successfully)
 * ✅ Create `/docs/workflow.md` from delegation protocol
+* ✅ Tag PR #1 in changelog (`docs/logs/releases.md` created)
+* ✅ Integrate Black into GitHub Actions (`.github/workflows/python.yml` created)
+* ⏳ Begin SkillKit module scaffold (awaiting full instructions from Byte)
 * ⏳ Monitor Codex + Claude agent feedback for changes in execution model
 
 ## 🧠 SKILL MODULES (Planned / Stubbed)
 
-* `github_agent.py` — GitHub API task delegation
+* `github_agent.py` — GitHub API task delegation (first prototype for SkillKit)
 * `local_shell.py` — Shell-level script execution
 * `calendar_sync.py` — External calendar integration (planned)
 * `hardware_interface.py` — ROS/hardware abstraction layer (stub only)
@@ -42,6 +45,7 @@ Use this file to store:
 * **Codex:** Execution target for code tasks (✅ Validated working with master branch)
 * **Windsurf:** MCP and Claude memory sync layer (under development)
 * **Redis:** May serve as local or transient memory adapter
+* **GitHub Actions:** CI/CD pipeline for code quality (✅ Black formatting checks implemented)
 
 ## 🔄 DELEGATION MODEL
 
@@ -57,5 +61,7 @@ Do **not** self-initiate code or memory updates unless Byte explicitly instructs
 * All memory changes must be committed by Claude.
 * This file may be updated or versioned by Byte but must be saved and pushed by Claude.
 * Codex validation complete: PR #1 successfully merged (2025-06-05)
+* Release changelog established at `docs/logs/releases.md`
+* CI/CD pipeline initiated with Python code quality checks
 
 Byte out.
