@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+PIPFILE.lock
+
+# Virtual Environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ByteCore Specific
+*.log
+logs/
+data/
+temp/
+.bytecore/
+config.local.yml
+secrets/
+memory_cache/
+*.db
+*.sqlite
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+
+# Security
+.env
+.env.local
+*.pem
+*.key
+*.cert
+
+# Agent Memory (except claude.md)
+memory/
+!claude.md

@@ -1,0 +1,45 @@
+# ByteCore Agent Dependencies
+# Python 3.11+ required
+
+# Core dependencies
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+aiohttp>=3.9.0
+aiofiles>=23.0.0
+
+# CLI
+typer[all]>=0.9.0
+rich>=13.0.0
+
+# Task execution
+asyncio>=3.4.3
+concurrent-futures>=3.1.1
+
+# Memory adapters
+pyyaml>=6.0
+orjson>=3.9.0
+neo4j>=5.0.0  # Optional: for graph memory backend
+
+# Skills
+githubpy>=2.0.0  # GitHub integration
+psutil>=5.9.0    # System monitoring
+
+# AI/ML integrations
+openai>=1.0.0    # OpenAI API
+anthropic>=0.20.0 # Anthropic Claude API
+langchain>=0.1.0  # Optional: for advanced chains
+
+# Testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
+
+# Development
+black>=23.0.0
+ruff>=0.1.0
+mypy>=1.0.0
+pre-commit>=3.0.0
+
+# Future robotics (commented for now)
+# roslibpy>=1.0.0  # ROS bridge
+# pyserial>=3.5    # Hardware communication
