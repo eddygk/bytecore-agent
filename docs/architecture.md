@@ -209,6 +209,7 @@ memory/
 ```bash
 # Local file system, YAML memory
 python cli/bytecore.py --memory yaml
+python cli/bytecore.py --task github_agent:list_issues --params '{"repo": "owner/repo"}'
 ```
 
 ### Cloud Service
